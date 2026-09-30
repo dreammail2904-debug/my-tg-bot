@@ -1,25 +1,25 @@
 import os
 import threading
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from flask import Flask
+
+app = Flask('')
 
 
-# Render port binding dummy server
-class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
-
-  def do_GET(self):
-    self.send_response(200)
-    self.end_headers()
-    self.wfile.write(b'Bot is running 24/7!')
+@app.route('/')
+def home():
+  return 'Bot is running permanently!'
 
 
 def run_server():
   port = int(os.environ.get('PORT', 8080))
-  server = HTTPServer(('0.0.0.0', port), SimpleHTTPRequestHandler)
-  server.serve_forever()
+  app.run(host='0.0.0.0', port=port)
 
 
-# Background thread me web server run karein
 threading.Thread(target=run_server, daemon=True).start()
+
+# ==========================================
+# APNA TELEGRAM BOT KA CODE NICHE PASTE KAREIN
+# ==========================================
 import json
 import os
 import uuid
