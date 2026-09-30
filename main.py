@@ -1,3 +1,25 @@
+import os
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
+
+# Render port binding dummy server
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+
+  def do_GET(self):
+    self.send_response(200)
+    self.end_headers()
+    self.wfile.write(b'Bot is running 24/7!')
+
+
+def run_server():
+  port = int(os.environ.get('PORT', 8080))
+  server = HTTPServer(('0.0.0.0', port), SimpleHTTPRequestHandler)
+  server.serve_forever()
+
+
+# Background thread me web server run karein
+threading.Thread(target=run_server, daemon=True).start()
 import json
 import os
 import uuid
