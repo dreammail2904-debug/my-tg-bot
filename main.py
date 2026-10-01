@@ -18,7 +18,7 @@ def run_server():
 threading.Thread(target=run_server, daemon=True).start()
 
 # ==========================================
-# APNA TELEGRAM BOT KA CODE NICHE PASTE KAREIN
+# 8774498374:AAEv_N5_Jgr_7wGRgy-Cv108veOgc3A_ZCM
 # ==========================================
 import json
 import os
